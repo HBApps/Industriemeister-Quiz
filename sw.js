@@ -1,23 +1,21 @@
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open('quiz-v1').then(cache => {
+    caches.open('quiz-cache').then(cache => {
       return cache.addAll([
         './',
         './index.html',
+        './app.js',
+        './questions.js',
+        './styles.css',
         './manifest.json',
-        './sw.js',
-        './icon.png',
-        './questions.js'
+        './icon.png'
       ]);
     })
   );
 });
-
 self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request);
-    })
+    caches.match(e.request).then(response => response || fetch(e.request))
   );
 });
