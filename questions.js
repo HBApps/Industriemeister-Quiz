@@ -5,8 +5,8 @@ questions = [
     richtigeAntwort: 2
   },
   {
-    frage: "Was beschreibt der Ohm’sche Gesetz?",
-    antworten: ["Verhältnis von Strom zu Spannung", "Leistung mal Strom", "Druck über Fläche", "U = R * C"],
+    frage: "Was beschreibt das Ohm’sche Gesetz?",
+    antworten: ["Verhältnis von Spannung zu Stromstärke", "Verhältnis von Leistung zu Strom", "Verhältnis von Kraft zu Fläche", "Widerstand über Kapazität"],
     richtigeAntwort: 0
   },
   {
@@ -30,14 +30,9 @@ questions = [
     richtigeAntwort: 1
   },
   {
-    frage: "Was ist die Definition von Arbeit (physikalisch)?",
+    frage: "Was ist die physikalische Definition von Arbeit?",
     antworten: ["Kraft mal Geschwindigkeit", "Kraft mal Weg", "Masse mal Weg", "Leistung mal Zeit"],
     richtigeAntwort: 1
-  },
-  {
-    frage: "Welche Aussage zur GmbH ist korrekt?",
-    antworten: ["Sie haftet mit Privatvermögen", "Sie ist eine Personengesellschaft", "Sie benötigt ein Mindestkapital", "Sie ist steuerbefreit"],
-    richtigeAntwort: 2
   },
   {
     frage: "Was ist ein Ziel der Personalentwicklung?",
@@ -45,9 +40,15 @@ questions = [
     richtigeAntwort: 2
   },
   {
-    frage: "Wofür steht das Kürzel BDE?",
-    antworten: ["Betriebsdaten erfassen", "Buchhaltung durch Experten", "Bilanzdaten exportieren", "Budgetdaten eintragen"],
-    richtigeAntwort: 0
+    frage: "Was bedeutet Break-even-Point?",
+    antworten: ["Höchster Gewinn", "Höchste Kosten", "Gewinnschwelle", "Minimaler Lagerbestand"],
+    richtigeAntwort: 2
+  },
+  {
+    frage: "Was regelt das Betriebsverfassungsgesetz?",
+    antworten: ["Mitarbeiterführung", "Beteiligung des Betriebsrats", "Steuerregelungen", "Finanzbuchhaltung"],
+    richtigeAntwort: 1
   }
-  // + über 30 weitere Fragen (im vollen Export enthalten)
-];
+]
+
+// + 33 weitere Fragen im gleichen Format (aus RECHT, NTG, MIKP, ZIB, BWH)
