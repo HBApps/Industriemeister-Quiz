@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industriemeister Quiz</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png">
+  <script defer src="questions.js"></script>
+  <script defer src="sw.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .quiz-container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; }
+    .question { font-weight: bold; }
+    .option { margin: 5px 0; padding: 10px; background: #f0f0f0; cursor: pointer; border-radius: 5px; }
+    .option:hover { background: #e0e0e0; }
+    #feedback { margin-top: 10px; font-weight: bold; }
+    #restart { margin-top: 20px; display: none; }
+  </style>
+  <script>
+    let questions = [];
+    let current = 0;
+    let shuffled = [];
+
+    async function loadQuiz() {
+      const res = await fetch('questions.js');
+      const text = await res.text();
+      eval(text);
+      shuffled = questions.sort(() => 0.5 - Math.random());
+      current = 0;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = shuffled[current];
+      document.getElementById("question").innerText = q.frage;
+      const opts = document.getElementById("options");
+      opts.innerHTML = "";
+      q.antworten.forEach((a, i) => {
+        const btn = document.createElement("div");
+        btn.className = "option";
+        btn.innerText = a;
+        btn.onclick = () => checkAnswer(i, q.richtigeAntwort);
+        opts.appendChild(btn);
+      });
+      document.getElementById("feedback").innerText = "";
+    }
+
+    function checkAnswer(selected, correct) {
+      const fb = document.getElementById("feedback");
+      if (selected === correct) {
+        fb.innerText = "Richtig!";
+        fb.style.color = "green";
+      } else {
+        fb.innerText = "Falsch! Richtige Antwort: " + shuffled[current].antworten[correct];
+        fb.style.color = "red";
+      }
+      current++;
+      if (current < shuffled.length) {
+        setTimeout(showQuestion, 1500);
+      } else {
+        document.getElementById("restart").style.display = "block";
+      }
+    }
+
+    function restartQuiz() {
+      document.getElementById("restart").style.display = "none";
+      loadQuiz();
+    }
+
+    window.onload = loadQuiz;
+  </script>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="question" class="question">Lade Frage...</div>
+    <div id="options"></div>
+    <div id="feedback"></div>
+    <button id="restart" onclick="restartQuiz()">Quiz neu starten</button>
+  </div>
+</body>
+</html>
